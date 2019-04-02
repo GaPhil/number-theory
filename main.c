@@ -6,6 +6,7 @@
 #include <math.h>
 #include <stdbool.h>
 
+// complexity: O(sqrt(n))
 bool is_prime(int n) {
     if (n == 1)
         return false;
@@ -19,9 +20,20 @@ bool is_prime(int n) {
     return true;
 }
 
+int gcd(int a, int b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+
 int main() {
+    int a = 5;
+    int b = 7;
+    printf("Enter two numbers to find their greatest common divisor: ");
+    scanf("%d %d", &a, &b);
+    printf("GCD of %d and %d: %d\n", a, b, gcd(a, b));
+
     int n;
-    printf("Enter a number to check if it's prime: ");
+    printf("\nEnter a number to check if it's prime: ");
     scanf("%d", &n);
     int x = is_prime(n);
     printf(x ? "true\n" : "false\n");
