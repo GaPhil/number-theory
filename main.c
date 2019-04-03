@@ -61,7 +61,17 @@ int mod_exp2(int a, int e, int n) {
     return d;
 }
 
+// fermat's theorem: if p is a prime and a is an integer
+// such that a does not divide n then a^(p-1) = 1 mod p.
+bool is_prime_fermat(int n) {
+    int k = mod_exp2(2, n - 1, n);
+    if (k != 1 % n)
+        return false;
+    return true;
+}
+
 int main() {
+
     int a, e, n;
     printf("### Modular exponentiation ###\n");
     printf("Enter a base number: ");
@@ -84,6 +94,9 @@ int main() {
     printf("Enter a number to check if it's prime: ");
     scanf("%d", &n);
     int x = is_prime(n);
-    printf(x ? "true\n" : "false\n");
+    int y = is_prime_fermat(n);
+    printf(x ? "Using method 1: %d is prime\n" : "Using method 1: %d is NOT prime\n", n);
+    printf(y ? "Using method 2: %d is prime\n" : "Using method 2: %d is NOT prime\n", n);
+
     return 0;
 }
