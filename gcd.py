@@ -31,4 +31,4 @@ def stein(m, n):
 for i in range(2, 100):
    for j in range(2, 100):
       assert stein(i, j) == euc(i, j)
-      #print stein(i + 2, j + 2)
+      #print stein(i, j)
