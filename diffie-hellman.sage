@@ -3,6 +3,7 @@ p = ""
 A = ""
 B = ""
 
+
 @cached_function
 def trial_div(x, b):
     d = x.trial_division(start=b)
@@ -21,6 +22,7 @@ def trial_factor(n, threshold):
     print("The first", threshold, "factors of p-1 are: ", factors)
     return factors
 
+
 # Find first 15 factors of p - 1
 factor_list = trial_factor(p - 1, 15)
 
@@ -37,11 +39,11 @@ for f in factor_list:
             print("a =", residue, "mod", f)
             residue_list.append(residue)
             break
-factor_list = factor_list[1:-(len(factor_list) - len(residue_list) - 1)]
 
-# Resize factor list, when using pre-computed residue_list - uncomment to save time!
+# Use pre-computed residue_list to save time!
 # residue_list = [20, 10, 2, 206, 22661, 355632, 295679, 1354571, 1334854, 4874497, 2432971, 2744217, 7270078, 10156472]
-# factor_list = factor_list[1:]
+
+factor_list = factor_list[1:]
 
 if len(factor_list) != len(residue_list):
     print("FAILED: factor_list != residue_list!")
