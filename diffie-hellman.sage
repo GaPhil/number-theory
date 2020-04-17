@@ -1,8 +1,9 @@
+# Phillip Gajland - 2020-04-16
+
 g = 2
 p = ""
 A = ""
 B = ""
-
 
 @cached_function
 def trial_div(x, b):
@@ -30,7 +31,6 @@ factor_list = trial_factor(p - 1, 15)
 # Basically a discrete log problem over a subgroup of order r -> takes ~20 min
 residue_list = []
 for f in factor_list:
-    # if f == 3682787: break
     ff = g.powermod((p - 1) / f, p)
     Af = A.powermod((p - 1) / f, p)
     for k in range(f):
