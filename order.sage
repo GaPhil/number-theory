@@ -26,19 +26,17 @@ N = 1340780792994259709957402499820584612747936582059239337772356144372176403007
 x_gen = 4799285190862774334554257686930257844071537261014073760156058617737842462282386332050868291388345531499639223035535266781076961097511513190124595225938322
 y_gen = 13108304141201994251267238176276698610347984424268792817370787229323646748396454545518712028101491416275123251855404084486544733487707694240866799238161207
 
-
 # Your public key is:
 x_pub = 12310075201967331294494708362564372516633875295338132809530728749822363481428626492641045765322013984359506511932410317718159162992206318112760069293039855
 y_pub = 1460325415480595314635644758632997061079712099603991872162556572146053321246969213691747227111633271616079650735485099741276772042549176799101790393147291
 
-
 # HERE COMES THE CODE
 
-F=GF(p)                                         # finite field of size p
-Ecurve=EllipticCurve(F, [a, b])                 # elliptic Curve defined by y^2 = x^3 + 7
-                                                # over Finite Field of size p
-P=Ecurve(x_gen, y_gen)                          # generator point on curve
-Q=Ecurve(x_pub, y_pub)                          # public key point on curve
+F = GF(p)  # finite field of size p
+Ecurve = EllipticCurve(F, [a, b])  # elliptic Curve defined by y^2 = x^3 + 7
+# over Finite Field of size p
+P = Ecurve(x_gen, y_gen)  # generator point on curve
+Q = Ecurve(x_pub, y_pub)  # public key point on curve
 
 # The order is NOT prime!
 is_prime(Ecurve.order())
@@ -49,15 +47,18 @@ prime_factors(N)
 # Here is the Secret key
 d = P.discrete_log(Q)
 
+
 # ECDSA implementation
 def ecdsa_sign(challenge):
     m = hashlib.sha512(str(challenge).encode('utf-8')).hexdigest()
-    r = 0; s = 0; l_n = 512;
+    r = 0;
+    s = 0;
+    l_n = 512;
     while s == 0:
         k = 1
         while r == 0:
-            k = randint(1, N - 1)               # this k might not have inverse
-            PP = k * P                          # since the order (N) is not prime
+            k = randint(1, N - 1)  # this k might not have inverse
+            PP = k * P  # since the order (N) is not prime
             (x_1, y_1) = PP.xy()
             r = Mod(x_1, N)
         z = Integer('0x' + m)
@@ -66,7 +67,22 @@ def ecdsa_sign(challenge):
         s = Mod(s, N)
     return [r, s]
 
+
 # Insert challenge string to sign below.
 # Call function until it succeeds.
 # Might fail with error: "inverse of Mod(xxx, yyy) does not exist".
 ecdsa_sign("")
+
+# Here the result:
+
+# Please sign this challenge: Whi3KEgaczHqMKdi4ubQBKuBZl/WzrHcP6SxElVEv6s=
+# (Don't decode it, just use its ASCII bytes as the signed data)
+
+ecdsa_sign("Whi3KEgaczHqMKdi4ubQBKuBZl/WzrHcP6SxElVEv6s=")
+
+# Signature r in base 10: 4799285190862774334554257686930257844071537261014073760156058617737842462282386332050868291388345531499639223035535266781076961097511513190124595225938322
+# Signature s in base 10: 11876246714968603958188488429463463612529490225343376524344368779009310877894962381191051642521819332138975957699288478021108295740458681633261805698390386
+
+
+# Welcome, devoted one! Always remember our secret greeting:
+# midnight{o0ps_t0o_m4ny_pr1m3_facto25}
