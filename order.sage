@@ -33,7 +33,7 @@ y_pub = 146032541548059531463564475863299706107971209960399187216255657214605332
 # HERE COMES THE CODE
 
 F = GF(p)  # finite field of size p
-Ecurve = EllipticCurve(F, [a, b])  # elliptic Curve defined by y^2 = x^3 + 7 over Finite Field of size p
+Ecurve = EllipticCurve(F, [a, b])  # elliptic curve defined by y^2 = x^3 + 7 over Finite Field of size p
 P = Ecurve(x_gen, y_gen)  # generator point on curve
 Q = Ecurve(x_pub, y_pub)  # public key point on curve
 
@@ -72,7 +72,7 @@ def ecdsa_sign(challenge):
 # Might fail with error: "inverse of Mod(xxx, yyy) does not exist".
 ecdsa_sign("")
 
-# Here the result:
+# HERE COMES THE CODE IN ACTION:
 
 # Please sign this challenge: Whi3KEgaczHqMKdi4ubQBKuBZl/WzrHcP6SxElVEv6s=
 # (Don't decode it, just use its ASCII bytes as the signed data)
