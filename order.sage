@@ -43,7 +43,7 @@ is_prime(Ecurve.order())
 # Here are the prime factors
 prime_factors(N)
 
-# Here is the Secret key
+# Here is the secret key
 d = P.discrete_log(Q)
 
 
