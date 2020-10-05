@@ -48,11 +48,11 @@ d = P.discrete_log(Q)
 
 
 # ECDSA implementation
-def ecdsa_sign(challenge):
-    m = hashlib.sha512(str(challenge).encode('utf-8')).hexdigest()
-    r = 0;
-    s = 0;
-    l_n = 512;
+def ecdsa_sign(m):
+    e = hashlib.sha512(str(m).encode('utf-8')).hexdigest()
+    r = 0
+    s = 0
+    l_n = Ecurve.order().nbits()  # 512 bits
     while s == 0:
         k = 1
         while r == 0:
@@ -60,7 +60,7 @@ def ecdsa_sign(challenge):
             PP = k * P
             (x_1, y_1) = PP.xy()
             r = Mod(x_1, N)
-        z = Integer('0x' + m)
+        z = Integer('0x' + e)  # the l_n leftmost bits of e
         inv_k = inverse_mod(k, N)
         s = inv_k * (z + r * d)
         s = Mod(s, N)
