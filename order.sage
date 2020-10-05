@@ -33,8 +33,7 @@ y_pub = 146032541548059531463564475863299706107971209960399187216255657214605332
 # HERE COMES THE CODE
 
 F = GF(p)  # finite field of size p
-Ecurve = EllipticCurve(F, [a, b])  # elliptic Curve defined by y^2 = x^3 + 7
-# over Finite Field of size p
+Ecurve = EllipticCurve(F, [a, b])  # elliptic Curve defined by y^2 = x^3 + 7 over Finite Field of size p
 P = Ecurve(x_gen, y_gen)  # generator point on curve
 Q = Ecurve(x_pub, y_pub)  # public key point on curve
 
@@ -57,8 +56,8 @@ def ecdsa_sign(challenge):
     while s == 0:
         k = 1
         while r == 0:
-            k = randint(1, N - 1)  # this k might not have inverse
-            PP = k * P  # since the order (N) is not prime
+            k = randint(1, N - 1)  # this k might not have inverse since the order (N) is not prime
+            PP = k * P
             (x_1, y_1) = PP.xy()
             r = Mod(x_1, N)
         z = Integer('0x' + m)
