@@ -4,11 +4,9 @@ print("The Diffie-Hellman key exchange can be broken trivially in (Z/nZ; +)!")
 n = 2^1024
 print("n = 2^1024\n")
 
-G = AdditiveAbelianGroup([n])
-
 # find a generator 1 < g \in (Z/nZ; +)
-for g in range(2, G.order()):
-    if gcd(g, G.order()) == 1:
+for g in range(2, n):
+    if gcd(g, n) == 1:
         print("The publicly known generator is:\ng =", g, "\n")
         break
 
