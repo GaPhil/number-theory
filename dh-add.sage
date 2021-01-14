@@ -4,7 +4,8 @@ print("The Diffie-Hellman key exchange can be broken trivially in (Z/nZ; +)!")
 n = 2^1024
 print("n = 2^1024\n")
 
-# find a generator 1 < g \in (Z/nZ; +)
+# Find a generator 1 < g \in (Z/nZ; +)
+# Change range to use other generator
 for g in range(2, n):
     if gcd(g, n) == 1:
         print("The publicly known generator is:\ng =", g, "\n")
@@ -31,6 +32,6 @@ print("Eve can use the extended euclidean algorithm to find an\na \\in Z : a * g
 print("Even can compute the key k using the eavesdropped message A and B.")
 print("k_Eve = R_n(a * A * B)\nk_Eve =", a * A * B % n, "\n")
 
-print("Claim:\tk_AB = R_n(a * A * B)\n")
-print("Proof:\tk_AB = R_n(g * x_A * x_b)\n\t     = R_n(g * x_a * (a*g) * x_B)\n\t     = R_n(a * (g*x_a) * (g*x_b))\n\t     = R_n(a * A * B)\n")
+print("Claim:     k_AB\t= R_n(a * A * B)\n")
+print("Proof:     k_AB\t= R_n(g * x_A * x_b)\n\t\t= R_n(g * x_a * (a*g) * x_B)\n\t\t= R_n(a * (g*x_a) * (g*x_b))\n\t\t= R_n(a * A * B)\n\t\t= k_Eve")
 print("k_AB == k_Eve:", g * x_a * x_b % n == a * A * B % n)
