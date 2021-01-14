@@ -73,8 +73,8 @@ print("k_AB == k_Eve:", g * x_a * x_b % n == a * A * B % n)
 ###   Claim:     k_AB = R_n(a * A * B)
 ###   
 ###   Proof:     k_AB = R_n(g * x_A * x_b)
-###           = R_n(g * x_a * (a*g) * x_B)
-###           = R_n(a * (g*x_a) * (g*x_b))
-###           = R_n(a * A * B)
-###           = k_Eve
+###                   = R_n(g * x_a * (a*g) * x_B)
+###                   = R_n(a * (g*x_a) * (g*x_b))
+###                   = R_n(a * A * B)
+###                   = k_Eve
 ###   k_AB == k_Eve: True
