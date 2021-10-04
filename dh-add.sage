@@ -5,7 +5,7 @@ print("We use a safe prime p for (Z/pZ; +), but it works for any (Z/nZ; +).\n")
 def rdp(nbits=1024):
     while True:
         p = random_prime(2^nbits-1, false, 2^(nbits-1))
-        if ZZ((p+1)/2).is_prime():
+        if ZZ((p-1)/2).is_prime():
             return p
 
 n = rdp()
