@@ -62,14 +62,14 @@ print("e_B: ", bin_rep(e_B))
 print("b_B: ", bin_rep(b_B))
 
 # Alice's shared key
-k_A = s_A * b_B
-print("k_A: ", bin_rep(k_A))
+k_A = bin_rep(s_A * b_B)
+print("k_A: ", k_A)
 
 # Bob's shared key
-k_B = s_B * b_A
-print("k_B: ", bin_rep(k_B))
+k_B = bin_rep(s_B * b_A)
+print("k_B: ", k_B)
 
-if bin_rep(k_A) == bin_rep(k_B):
+if k_A == k_B:
     print("Keys match!")
 else:
     print("Keys do NOT match!")
